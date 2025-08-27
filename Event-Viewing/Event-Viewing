@@ -1,0 +1,32 @@
+Event-Viewing
+
+Description
+One of the employees at your company has their computer infected by malware! Turns out every time they try to switch on the computer, it shuts down right after they log in. The story given by the employee is as follows:
+
+    They installed software using an installer they downloaded online
+    They ran the installed software but it seemed to do nothing
+    Now every time they bootup and login to their computer, a black command prompt screen quickly opens and closes and their computer shuts down instantly.
+
+See if you can find evidence for the each of these events and retrieve the flag (split into 3 pieces) from the correct logs! Download the Windows Log file here 
+
+we download the event files and open it via windows event viewer
+
+in the challenge they mentioned that 
+
+1.They installed software using an installer they downloaded online
+2.They ran the installed software but it seemed to do nothing
+3.Now every time they bootup and login to their computer, a black command prompt screen quickly opens and closes and their computer shuts down instantly.
+
+i did some research online and saw that 
+
+    Installation -→ Event ID 1033
+    Registry Change -→ Event ID 4657
+    Shutdown -→ Event ID 1074
+    
+Now i open the Event Viewer and filtered the logs by using the event ID
+
+and once i filtered with the event ID 1033 there were a few logs and going through each one of then, one of them had an encrypted text using base64 i quickly copy pasted it in cyberchef and found that it was the part 1 of the fflag 
+
+i repeated the same for the logs with Event id 4657 and Event id 1074 and was able to get all 3 parts of the flag 
+
+this was a fairly easy challenge 
