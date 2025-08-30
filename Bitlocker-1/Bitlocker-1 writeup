@@ -1,0 +1,58 @@
+Bitlocker-1
+
+Description
+Jacky is not very knowledgable about the best security passwords and used a simple password to encrypt their BitLocker drive. See if you can break through the encryption! Download the disk image here 
+
+start by first downloading the disk image file that we are provided in the challenege 
+
+then we check which type of file it is by using the file command and once we confirm that it a disk image we proceed with the next steps 
+
+we will first use a bitlocker hash extractor tool named "bitlocker2john"
+
+and using the command below 
+
+"bitlocker2john -i bitlocker-1.dd > bitlocker_hash.txt"
+
+we are calling the tool and "-i" to specify that it is a disk image and then pass the name of the image file 
+which in out case ins bitlocker-1.dd and then we add the "> file_name.txt" in which you want the output needs to be stored the name can be anything of your choice
+
+Once that is done now we can see that a new file is found in the directory in my case it will be "bitlocker_hash.txt" and in this file all the hashes that were taken from the disk image will be stored 
+
+Once we have the hashes now we have to brute force the password using a dictionary attack for this we will be using a tool called "hashcat" and since we are going to be using a dictionary attack we will be needing a wordlist and since its a small challenge we can simply use one of the most powerful and commonly used wordlist "rockyou.txt"
+
+then we run this command 
+
+"hashcat -m 22100 -a 0 bitlocker_hash.txt <path_of_rockyou.txt> -w 3"
+
+here we are first calling the tool and then "-m 22100" argument this is used so that it specifies the hash mode for the hashcat to distingush it as a bitlocker hash, then the "-a 0" sets the mode as a dictionary mode attack, then its the hash file that has the text and then followed by the path of the wordlish we are using and the the nfinal argument "-w 3" puts in more workload so that the hashing is more effecient and faster
+
+once that is done the hascat should return the password in this challenge it was "jacqueline"
+
+the next step is to decrypt the bitlocker file using the password see the contents 
+
+now we make a new directory 
+Make a directory to store the dislocker-file located inside the bitlocker.dd, a virtual file that represents the decrypted contents of the bitlocker encrypted volume.
+
+this name can be anything 
+
+once that is done run this command 
+"sudo dislocker bitlocker-1.dd -ujacqueline dislocker"
+
+this uses a tool called dislocker to unlock the file which was provided for us then we use the -u argument to provide it with the password and then the directory name into which it should decrypt all the contents 
+
+once the decryption is done we move on to the next step which is mounting it 
+make another folder in my case i am going to name is "mounted"
+
+using the cmd "mkdir mounted"
+
+then we can simply mount the contents from the decrypted diskc drive to the mounted folder 
+
+using this command to do so 
+
+"sudo mount -o loop dislocker/dislocker-file mounted"
+
+once this is done we can cd to the mounted directory and find the contents of the disk image 
+
+we can see that there is a flag.txt so we "cat flag.txt" to read the file and boom we get the flag 
+
+
