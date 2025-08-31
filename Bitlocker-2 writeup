@@ -1,0 +1,26 @@
+Bitlocker-2
+
+Description
+Jacky has learnt about the importance of strong passwords and made sure to encrypt the BitLocker drive with a very long and complex password. We managed to capture the RAM while this drive was opened however. See if you can break through the encryption! Download the disk image here and the RAM dump here 
+
+
+In this challenge, we’re given both a disk image and a memory dump, perhaps obtained via a cold boot attack
+
+more on cold boot attacks :- https://en.m.wikipedia.org/wiki/Cold_boot_attack
+
+the first one is definitely not the intended method to solve this challenge 
+
+the flag is in the memory dump file so we extract the memory dump from the zip file we downloaded 
+and run this command 
+
+"cat memdump.mem | grep 'picoCTF{' --text"
+
+this will give us  the flag 
+
+there is another way to solve this using other tools but I was not able to understand it properly 
+
+
+for future reference see this writeup
+
+
+https://blog.cbarkr.com/ctf/picoCTF/2025/Bitlocker-2
