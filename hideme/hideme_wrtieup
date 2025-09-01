@@ -1,0 +1,23 @@
+hideme
+
+Description Every file gets a flag. The SOC analyst saw one image been sent back and forth between two people. They decided to investigate and found out that there was more than what meets the eye here.
+
+first download the file from the challenge
+
+first we confirm that the file is a png file using the file command
+
+then we use the tool zsteg to see mroe info about the file 
+
+once we use zsteg to uncover more info we find that there are some more data so we use the tool "foremost" to extract the dat and store it into a output folder 
+
+doing this we get 3 files audi.txt, png, zip file 
+we cd into zip and then extract the contents of the zip file using 
+
+7z x <filename>
+
+after doing this we get another secret folder 
+
+cd into this folder and we can see the flag.png 
+
+this image has our flag 
+
