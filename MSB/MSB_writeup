@@ -1,0 +1,30 @@
+MSB
+
+Description
+This image passes LSB statistical analysis, but we can't help but think there must be something to the visual artifacts present in this image... Download the image here
+
+download the image provided in the challenge, given the named of the challenge looks like we are dealing with MSB problem 
+
+MSB stands for “most significant bit”, and it is the bit that has the biggest weight, usually the number/bit on the furthest left.
+
+For example, take the number 2500. The most significant bit is “2”, since it has a value of 2000. This time, take the binary number
+
+11011001
+
+The most significant bit in this example is the furthest left bit, which has a value of 128.
+
+How does knowing this help us here? To explain, every 8‑bit color channel in an image (R, G or B) stores values from 0…255. In binary, that’s bits 7 6 5 4 3 2 1 0. People often hide important data using the most significant bits of the image.
+
+so we open the using on stegonline
+
+website :- https://georgeom.net/StegOnline/
+
+we upload the file and go to the data extraction 
+
+Since we’re doing this using MSB, let’s select bit 7 for Red, Blue, and Green, because 7 is the most significant bit in the column.
+
+the output only prints the first few bits so download the output, this gives us the entire data hiudden in the image which was around 96000 words 
+
+we open this on notepade and simply using the "find" feature to find the flag using the format "picoCTF{"
+
+doing this we get the challenege flag 
