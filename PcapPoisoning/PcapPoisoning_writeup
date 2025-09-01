@@ -1,0 +1,16 @@
+PcapPoisoning
+
+Description
+How about some hide and seek heh? Download this file and find the flag.
+
+this is a very straightforward challenege and was able to solve it very easily using this command 
+
+"strings trace.pcap | grep picoCTF{"
+
+strings trace.pcap: This command extracts all readable strings from the binary PCAP file. "Strings" in this context refer to sequences of printable characters that could represent meaningful data, such as text within the payloads of packets.
+
+| grep picoCTF{: The grep command filters the extracted strings to display only those containing "picoCTF{", which is the typical format for flags in CTF challenges.
+
+
+and just like that we have our flag 
+
