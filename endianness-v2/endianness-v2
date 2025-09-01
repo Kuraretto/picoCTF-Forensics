@@ -1,0 +1,157 @@
+endianness-v2
+
+Description
+Here's a file that was recovered from a 32-bits system that organized the bytes a weird way. We're not even sure what type of file it is. Download it here and see what you can get out of it 
+
+once we ge tthe file we analyse the file and see which type it is 
+
+using the file cmd we can not get any useful info so we using the exiftool to chekc the file 
+
+and it returns some interesting data 
+
+It states that the file contain JPEG byte header in the file.
+Let’s examine the hex byte header
+
+next to examine the hex signature of the file  we use the tool ghex 
+
+"ghex challengefile"
+
+once we do this we notice that the first 4 bytes look like a reversed form odff 
+a JPG header 
+\
+FF D8 FF E0 (JPG header) → E0 FF D8 FF
+
+this gives us a clue that every 4 bytes is flipped 
+
+Now there are 2 ways to approach this 
+
+solution 1
+
+write a script which sort every 4 byte into an array and flip it 
+
+example 
+
+[e0ffd8ff] → [ffd8ffe0]
+
+then merge the rest of the bytes
+
+the script
+
+def getHex(input,output):
+  with open(input,'rb') as f:
+  hex_data=f.read()
+file_hex=hex_data.hex()
+
+with open(output,'w') as f:
+  f.write(file_hex)
+
+
+def reverse_hex_strings(hex_strings):
+    reversed_hex_strings = []
+    for hex_string in hex_strings:
+        reversed_hex_string = ''.join(reversed([hex_string[i:i+2] for i in range(0, len(hex_string), 2)]))
+        reversed_hex_strings.append(reversed_hex_string)
+    
+    return reversed_hex_strings
+
+hex_strings = ["e0ffd8ff", "464a1000", "01004649", "01000001", "00000100", "4300dbff", "06060800", "08050607", "09070707", "0c0a0809", "0b0c0d14", "12190c0b", "1d140f13", "1d1e1f1a", "201c1c1a", "20272e24", "1c232c22", "2937281c", "3431302c", "271f3434", "32383d39", "34332e3c", "00dbff32", "09090143", "0c0b0c09", "180d0d18", "211c2132", "32323232", "32323232", "32323232", "32323232", "32323232", "32323232", "32323232", "32323232", "32323232", "32323232", "32323232", "32323232", "c0ff3232", "00081100", "032c0196", "02002201", "11030111", "00c4ff01", "0100001f", "01010105", "00010101", "00000000", "01000000", "05040302", "09080706", "c4ff0b0a", "0010b500", "03030102", "05030402", "00040405", "017d0100", "04000302", "21120511", "13064131", "22076151", "81321471", "2308a191", "15c1b142", "24f0d152", "82726233", "17160a09", "251a1918", "29282726", "3635342a", "3a393837", "46454443", "4a494847", "56555453", "5a595857", "66656463", "6a696867", "76757473", "7a797877", "86858483", "8a898887", "95949392", "99989796", "a4a3a29a", "a8a7a6a5", "b3b2aaa9", "b7b6b5b4", "c2bab9b8", "c6c5c4c3", "cac9c8c7", "d5d4d3d2", "d9d8d7d6", "e3e2e1da", "e7e6e5e4", "f1eae9e8", "f5f4f3f2", "f9f8f7f6", "00c4fffa", "0300011f", "01010101", "01010101", "00000001", "01000000", "05040302", "09080706", "c4ff0b0a", "0011b500", "04020102", "07040304", "00040405", "00770201", "11030201", "31210504", "51411206", "13716107", "08813222", "a1914214", "2309c1b1", "15f05233", "0ad17262", "e1342416", "1817f125", "27261a19", "352a2928", "39383736", "4544433a", "49484746", "5554534a", "59585756", "6564635a", "69686766", "7574736a", "79787776", "8483827a", "88878685", "93928a89", "97969594", "a29a9998", "a6a5a4a3", "aaa9a8a7", "b5b4b3b2", "b9b8b7b6", "c4c3c2ba", "c8c7c6c5", "d3d2cac9", "d7d6d5d4", "e2dad9d8", "e6e5e4e3", "eae9e8e7", "f5f4f3f2", "f9f8f7f6", "00dafffa", "0001030c", "11031102", "f7003f00", "80a228fa", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "80a2280a", "77aa280a", "a69bb6da", "a1861a14", "04646869", "5826daa7", "488001f7", "e5c619c9", "00adc7fc", "e5b3a25c", "64dbf4d6", "adafee99", "4429926d", "8a4ed32c", "070e1537", "0756095e", "38070707", "cfcb14c1", "2236e910", "81be65e5", "f240b7a7", "6920c75b", "6003c079", "a02cc939", "b41e967a", "6445a701", "32c9ae43", "b5d120dc", "2380bb05", "2179a335", "c170beca", "7c84cdbc", "e359fcad", "b3cf4aa7", "8fbf98f1", "077d6b4d", "daa87355", "e6bae5b5", "f90a13dc", "b8cc317f", "8e53eb1f", "0ea078bd", "8bc58a9e", "7d82b6c4", "1abc5f44", "0977367c", "dc5ce66d", "a191ef2a", "18f44849", "39c10112", "1374fcc1", "f992b052", "d9f652ac", "357715af", "40a6caba", "73aee438", "40e7478e", "76aea816", "1f1ec7fb", "5da489b2", "f4af0b42", "6d91ef29", "910c4965", "5e3803c2", "20075b70", "431f9c67", "e278df50", "71fbc3c2", "847bde9a", "7152d9d1", "2747b66b", "ed58f3cb", "7fa1cacf", "04198889", "75801c75", "c64d5614", "a4d662b8", "2fd3e0d2", "088ae56e", "31e191a7", "9d914504", "49dd3b57", "03ba8d39", "88179dda", "718dcb74", "a86b8b74", "328c2eee", "1519e2ca", "465b5ec4", "9583afac", "3130c86c", "0650fad8", "ab9d15a5", "2dba56eb", "c8c5d5a5", "397b5b66", "971119af", "1640a47b", "4f82a4da", "9291db23", "afbd2a32", "91eb348a", "249edb64", "ef9ab4ba", "0a51d87c", "8bacd1c4", "c0cacf21", "061d01c8", "408ee7d6", "3bac6836", "9769165f", "a30569b7", "fff7eab4", "a2496000", "9fb4f12a", "4346fb66", "e3edca03", "8c71773d", "c58f4f73", "7aea533a", "08dc939d", "3e84b37f", "9110f37c", "55655666", "72274f0c", "0ee43e15", "d900404e", "dfd9aba2", "e2366a5a", "0beacae2", "49200998", "91d48104", "547164d4", "a64b7c2f", "e26dcada", "bc6f2f9d", "76ec83d5", "bc4d23b2", "60417082", "f3638517", "009ac211", "2db3a2d7", "ee36fd35", "54fb470b", "5d764970", "54778262", "d736b290", "abe4b950", "6a9e7170", "9046f126", "79cb6ead", "c7b39614", "1477892c", "edfef08a", "07963243", "7dcb6def", "0328bd15", "35a28a62", "d4547430", "0fd8a58d", "795b9410", "c2919b79", "73ef07ed", "cd1db88e", "36f1b654", "f2bc259b", "69ba4ade", "cadae082", "85c6b297", "db240864", "c84fc590", "194f7077", "d90038f4", "bcaeb1a2", "36570447", "5cda5830", "04796d6a", "933511b7", "8ccb57c4", "eedc09c6", "e322f3a0", "b74eef19", "3d9336f1", "e4bd5d9b", "2b22f036", "b1c8dcbb", "b8ccdcec", "ee544e60", "e5405e46", "a0c11948", "842a7a0d", "6d91e6fa", "6adc7034", "2a4b5196", "5c9246ab", "480c9722", "823c0152", "0daec741", "b7659e5b", "0e6792b7", "c12e3552", "0c60b310", "fb2407f0", "4a02680e", "c68b9c2b", "b616d736", "eaa6c1b2", "d7704d12", "8d6d5b20", "9e044124", "38b7855c", "19c78651", "e03a3dcf", "759ac687", "41d0c2cb", "8fa42575", "c2da1f6f", "755e8da8", "2c488d46", "7222911f", "93bb8114", "4707c0c1", "e2cb6245", "43ed0f7b", "a81359a6", "956588de", "2696b4a1", "6abce529", "059cdbca", "0e0ec86c", "0077eb3e", "36c61318", "5e330c0b", "1c9f3ec1", "ef58d2b7", "ab8268ba", "c5ec6ea4", "fdedca95", "9d732edb", "40ef18c3", "80150d1d", "fed32ede", "1cc5e4db", "e1895bd3", "8ac86bb7", "42492234", "dcdec798", "aa9cded9", "e075f391", "12ef6be2", "9b475b59", "1eafed59", "6e2dc83b", "2d758a23", "88559609", "0c790612", "018e83c3", "9a0da0f4", "0a80a228", "0a80a228", "0a80a228", "4dfbb5e5", "e9166f4a", "5b59d833", "efd3045c", "2cba7663", "b77729b1", "b915dcc0", "803b6e38", "40d1d4d5", "e09f261c", "9c4553dd", "8d256b4d", "090c8de9", "abb2db1d", "87b5b5a1", "e65b617b", "ee786cdd", "1d1579ae", "29b581c7", "926caded", "ac183e5d", "b652df2f", "9ec1309e", "36d2c552", "c358188f", "70623836", "fd5d318a", "a79f0114", "9ea5590d", "c45a4c6d", "b76215ac", "13c890b7", "cac5dc19", "71e424a9", "d4a30d8c", "838f05d6", "337c48e6", "2ee4e415", "943da495", "58ead6c6", "673fa559", "a44d56c1", "ae9feeaf", "9d1eaf3a", "c501147d", "d0ea0f9f", "fefe8ef8", "58d2ded2", "31f9d2cc", "6e444ade", "ac6ec392", "709b01d9", "39825b78", "7469700e", "e9dc075f", "4913c49a", "b7b776f6", "39e69eb9", "b27ee612", "02561b06", "e60bb47c", "004f0e10", "ec9a9371", "200ea0e8", "fbef3278", "18d34803", "e85b32db", "d0451a17", "69794c49", "0eb91112", "1e51fcc3", "e02cfe48", "ff4a07e3", "77d7c300", "2d8c475a", "9a044812", "72f699d7", "adbb70cc", "e36f8423", "e309998f", "15bf633c", "1c40d1d2", "eaa1a1be", "4dba7812", "e528de5a", "e12ded81", "3da7fd0b", "498e56a9", "a9b19258", "6390080e", "aaf5a177", "ab81469a", "6dbad768", "b7f6d6c4", "5c7ae910", "96fd11d6", "96dcdf4f", "0eb14a78", "11915415", "933c6e24", "9d1dcfc9", "6bc90114", "e2a12eda", "8ee4795b", "262fecdf", "88a77f8f", "0977ddae", "31b6f226", "bf8dcbf2", "9ef36cbb", "aaa71a9c", "b9502ff8", "96d714f1", "89adda73", "098ea689", "06ed674b", "4e59797b", "fd5b1e01", "76f99e9f", "e6ae3938", "34e5008a", "de0d00ff", "eb6bbefd", "d20c6fe1", "22a8ed6a", "8c484cda", "ce6f311b", "9d63fee8", "0eeaa0c7", "9fe7847f", "34435c00", "bda8c5f1", "9cae9bd5", "99bd3ba2", "4fdb0561", "8c91ed26", "4970ac92", "779b9925", "28ba3b62", "6f180603", "5ecd6b34", "be262ce5", "3ce1fb5b", "86f16a69", "19431045", "0c32e6dd", "13ba8dee", "fc1756d4", "f8ca9a22", "dd5a0d82", "5b4b226c", "b6a2ae99", "8ff99879", "3bd96029", "c8f2c518", "abb382e5", "77050e3e", "33075074", "e66ef8a4", "2fd353c7", "a01d7827", "b7cdfc82", "3c734d3c", "1f991d73", "93716d74", "4e8ed383", "8400ff21", "1ef0e449", "b64ca089", "d88735af", "c3ced37c", "b8793ae5", "897227e3", "76672007", "ac6b320e", "6f3280a2", "8c49b52e", "1336d6d6", "d1902a41", "30624edd", "4e2508be", "320cb81c", "9c91dbb9", "859735d6", "3d5d8a27", "21182bde", "447d5883", "8e4940da", "10cf3615", "93d1ce58", "f09030e6", "0c7ab3bc", "0750f4f5", "6ba06d21", "a5fd5d3a", "1776a4dd", "86a92306", "88875b8e", "59bab905", "b611c1a3", "3082ab70", "54133c39", "d50ce1bf", "f60caead", "b49216f7", "19ce4b9e", "e6ef22da", "d62ec95d", "ba31c60a", "9c2348e5", "73462e2b", "0114e55d", "8be043c2", "ede5f0e4", "d768c98b", "df667853", "cd4d8e47", "98359685", "84dcce31", "eb394426", "5d81e3c1", "bdb3777c", "9936dbfb", "9c4b1c77", "e545335d", "2f07d0b7", "a25cadf9", "bf8b3880", "5bdcdc06", "e9da9340", "dc71949a", "4b9b12ea", "fb1161c7", "3e22ed44", "aace3776", "36fef44a", "704ce8c1", "2df62278", "5a79d246", "5e78eaca", "b400ffd1", "89b9c8e5", "8d574461", "5f1b6917", "0ff3936b", "c0c1adf5", "008aeeae", "0ddfb4e2", "d66cbaeb", "66f61f4f", "9f4837ed", "cc97b64f", "343bd372", "b3411e45", "48a2fb81", "5c4ff204", "c3fb7ef1", "f8d830b7", "6d2d1d7a", "ec266da6", "46f2c24e", "32f7374f", "5bc16da1", "6c202de7", "744daee3", "9e0750d4", "bc01fee9", "cc45d4b4", "33c9a6a9", "bdf0a5df", "8bd679cb", "c4db7bbf", "cb19f30a", "245eee8c", "a1553a6e", "2d5abde1", "7b4bc716", "d556095b", "c4c52dad", "42b24c4c", "cec8a393", "44b90d58", "4bdc5539", "b82b7236", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "280a80a2", "ff3f80a2"]
+
+reversed_hex_strings = reverse_hex_strings(hex_strings)
+
+with open('reversedHex.txt', 'w') as f:
+    for reversed_hex_string in reversed_hex_strings:
+        f.write(reversed_hex_string + '\n')
+input='challengefile'
+output='analyze.txt'
+
+with open('analyzed.txt','r') as f:
+  data=f.read()
+
+array_data=[data[i:i+8] for i in range(0,len(data),8)]
+result=', '.join(array_data)
+with open('array.txt','w') as f:
+  f.write(result)
+  
+  this is the final script which will reverse the values to the required output 
+  
+now we run this code and save the file we can now see that the file starts and ends with the correct hearder and trailer 
+
+JPG Header : FF D8 FF E0
+JPG Tailer: FF D9
+
+now save the reversed hex file as a hexadeciaml encoding 
+
+then we haev to change the file type from .txt to a .jpg 
+]
+this will show us an image which has the contents of the flag 
+
+Solution 2
+
+this solution is a very simnple one as it is a single line cmd 
+
+"hexdump -v -e '1/4 "%08x"' -e '"\n"' input_file | xxd -r -p > output_file"
+
+detailed explanation of the cmd 
+
+Step 1: hexdump -v -e '1/4 "%08x"' -e '"\n"' input_file
+
+hexdump: prints file contents in hexadecimal format.
+
+-v: “no squeezing” → by default, hexdump condenses repeated lines into a single *, but -v forces it to print all data.
+
+-e: format string option that tells hexdump how to display the output.
+
+Breaking down the format '1/4 "%08x"'
+
+1/4 → process 1 unit of 4 bytes (so: 4 bytes at a time).
+
+"%08x" → print it as an 8-digit hexadecimal number (zero-padded if needed).
+
+Example: if the 4 bytes are 0x12 0x34 0x56 0x78, they’re interpreted as a 32-bit word → printed as 12345678.
+
+The second format -e '"\n"'
+
+Just means: after printing that 32-bit word, add a newline.
+
+👉 So in plain English:
+hexdump reads the file 4 bytes at a time and prints each as an 8-digit hex number per line.
+
+Example:
+If input_file contains the bytes:
+
+01 02 03 04 05 06 07 08
+
+the output will be printed 
+
+01020304
+05060708
+
+Step 2: | xxd -r -p
+
+The | pipes that formatted hexdump into xxd.
+
+xxd: a hex dump tool (kind of the mirror twin of hexdump).
+
+-r: reverse → instead of producing hex, it takes hex and converts it back to binary.
+
+-p: “plain mode” → expects input as a simple stream of hex digits (without offsets or ASCII columns).
+
+So at this point, we’re feeding lines of clean hex (01020304) into xxd, which turns them back into raw binary.
+replace the input_file with the challenge file name and the output_file as anything you want 
+
+Step 3: > output_file
+
+Redirects that binary output into a new file.
+
+In total:
+
+hexdump: reads input_file → emits 4-byte chunks as hex words (8 hex chars per line).
+
+xxd -r -p: reads those hex words → turns them back into binary.
+
+> output_file: saves binary into output_file.
+
+
+
+this should give us an image file which has the flag 
+
