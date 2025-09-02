@@ -1,0 +1,16 @@
+RED 
+
+Description
+RED, RED, RED, RED Download the image:
+
+this is a very simple challenge where the flag is hidden in a image 
+
+to find the flag I used the tool called "zsteg"
+
+to use the tool to find the hidden data in the image we can use the code 
+
+zsteg reg.png
+
+this shows us the data hidden in the image, once we run this we can find that text are hidden in the image, some text looks encrypted as well, at a glance the text looks like its encrypted using base64 
+
+so using cyber chef i was able to decode it and get the flag 
