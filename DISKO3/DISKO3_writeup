@@ -1,0 +1,41 @@
+DISKO 3
+
+Description
+Can you find the flag in this disk image? This time, its not as plain as you think it is!
+
+we start but first Extracting the Disk Image 
+gunzip disko-3.dd.gz
+
+after extracting we should have "disko-3.dd"
+
+Now we shall analyze the disk layout 
+to get the disk layout we use the command 
+
+"fdisk -l disko-3.dd"
+
+using that command we find that There are no explicit partitions, which hints that a filesystem is written directly to the image.
+
+Now we mount the disk image 
+using these command below we can mount a disk file 
+
+sudo mkdir /mnt/disko-3
+sudo mount -o loop disko-3.dd /mnt/disko-3
+
+Now lets Explore the Mounted Image
+
+ls /mnt/disko-3
+
+after we execute this command we come asscorss a "log" folder let's see what is inside this folder 
+
+ls -l /mnt/disko-3/log
+
+1 file in specific stood out the name was "flag.gz"
+
+let's extract the flag file 
+
+cp /mnt/disko-3/log/flag.gz 
+gunzip flag.gz
+
+let's view the contents of the file using the cat cmd
+
+cat flag
