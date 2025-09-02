@@ -1,0 +1,15 @@
+Ph4nt0m 1ntrud3r
+
+Description
+A digital ghost has breached my defenses, and my sensitive data has been stolen! 😱💻 Your mission is to uncover how this phantom intruder infiltrated my system and retrieve the hidden flag. To solve this challenge, you'll need to analyze the provided PCAP file and track down the attack method. The attacker has cleverly concealed his moves in well timely manner. Dive into the network traffic, apply the right filters and show off your forensic prowess and unmask the digital intruder!
+
+this is a very simple challenege we are provided with a pcap file which has the secret flag 
+encoded in a encrypted pattern 
+
+we open the file and we check the data in each packet, first we check the length, i found that there are 3 different length 4,8 and 12, i opened the packets with 12 length and found that there was a text which looked like it was encrypted using base64.
+
+then i looked into the timings as the challenge mentioned "well timely manner." so i checked the timing as well and then once i got all the messages from the packets with length 12 and length 4, i pasted them in cyberchef and decrypted them using base64 
+
+and boom we have output flag 
+
+the order in which the messages needed to be placed matters as it was a timely attack, so placing the messages in the time order is important.
