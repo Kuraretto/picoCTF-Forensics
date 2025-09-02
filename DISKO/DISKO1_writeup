@@ -1,0 +1,16 @@
+
+Tools Used
+strings — to extract readable ASCII/Unicode strings from binary files.
+
+file — to identify file format.
+
+use the ‘file’ command to understand what kind of image we’re dealing with.
+
+the image contains a FAT32 filesystem
+
+Extract All Strings
+
+'strings disko-1.dd | less’ to extract all strings 
+then use ‘grep’ to find the flag.
+
+strings disko-1.dd | grep -i picoCTF	
