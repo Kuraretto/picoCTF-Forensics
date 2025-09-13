@@ -1,0 +1,13 @@
+So Meta
+Description
+Find the flag in this picture.
+
+this was a very easy challenge 
+
+all i had to do was download the image file from the challenege and then 
+run the image using zsteg 
+
+zsteg <image_name> 
+
+and boom it prints out the flag 
+
