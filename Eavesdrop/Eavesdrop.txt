@@ -1,0 +1,79 @@
+Eavesdrop
+
+Download this packet capture and find the flag.
+
+    Download packet capture
+
+
+this challenge was new for me and so took some time to solve 
+
+we are provided with a pcap file 
+
+so the first step would be to open the file on wireshark and when i saw the file it was rrather small and not a lot of messages were sent so i went through 
+each packet and found some vert intersting converstations 
+
+since i wanted to note down all the convos i used the strings command to paste the contents of the pcap file 
+
+Hey, how do you decrypt this file again?
+You're serious?
+Yeah, I'm serious
+*sigh* openssl des3 -d -salt -in file.des3 -out file.txt -k supersecretpassword123
+Ok, great, thanks.
+Let's use Discord next time, it's more secure.
+C'mon, no one knows we use this program like this!
+Whatever.
+Could you transfer the file to me again?
+
+GET / HTTP/1.1
+Host: connectivity-check.ubuntu.com
+Accept: */*
+Connection: close
+
+HTTP/1.1 204 No Content
+Date: Mon, 04 Oct 2021 18:08:52 GMT
+Server: Apache/2.4.18 (Ubuntu)
+X-NetworkManager-Status: online
+Connection: close
+
+Oh great. Ok, over 9002?
+Yeah, listening.
+Sent it
+Got it.
+
+
+this was the communication which i was able to find when i ran the strings for the pcap 
+
+there are 2 major clues here the first one is that the file is encrypted using des3 and the message also tells us how to decerypt it 
+
+the other main clue we have is the "oh great. ok, over 9002?" 
+this gives us a clue that the file was sent on port 9002 
+
+so we search for the communication port 9002 on wireshark
+
+when we open this we get some values in ascii 
+
+Salted__..
+.%..[eC.lR...H{.R.m....P..R/..2....d@
+
+we need to change the type to RAW, as using ACSII does not work the reason is 
+
+data is saved directly as ASCII, saving the characters themselves, not the actual binary bytes, so the decryption will fail because it expects the raw binary data when encrypted. Encryption algorithms operate on binary data
+
+so we change it to RAW this would show something like 
+
+53616c7465645f5f0c160de825c4925b6543fa6c52dc91b4487b8252966d9de6aec8508b95522f879232bf89e3066440
+
+
+then use the "save as" option to save the contents in a file, make sure the give the extension as .des3 and save it 
+
+then all that is left to do is 
+
+run the decryption cmd which we found earlier 
+
+"openssl des3 -d -salt -in <file.des3> -out file.txt -k supersecretpassword123"
+
+and this should store the flag in file.txt 
+
+and we can just use "cat file.txt" to see the flag 
+
+gg
