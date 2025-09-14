@@ -1,0 +1,13 @@
+St3g0
+
+Description
+Download this image and find the flag.
+
+this is a very simple challeneg all you have to do is 
+
+use zsteg to find the flag from the image given in the challenge 
+
+"zsteg <image_file.png>"
+
+the output of this command should have the flag 
+
