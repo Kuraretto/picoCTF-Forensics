@@ -1,0 +1,59 @@
+Enhance!
+Description
+Download this image file and find the flag.
+
+this is an very simple challenge where we are given a image file but this time we are given a 
+.svg file 
+
+SVG file 
+
+An SVG file is a Scalable Vector Graphics file, an XML-based format used for two-dimensional, vector-based graphics on the web. Unlike pixel-based (raster) formats, SVGs use mathematical equations to define shapes, ensuring they maintain quality at any size, can be searched and indexed like text, and support animation, interactivity, and styling with CSS
+
+so first i cheked the file using file cmd and then the detailes using exiftool 
+
+then i tried using "strings <image_file_name> 
+and noticed that the flag was hidden inside  
+
+         style="font-size:0.00352781px;line-height:1.25;fill:#ffffff;stroke-width:0.26458332;"
+         id="tspan3748">p </tspan><tspan
+         sodipodi:role="line"
+         x="107.43014"
+         y="132.08942"
+         style="font-size:0.00352781px;line-height:1.25;fill:#ffffff;stroke-width:0.26458332;"
+         id="tspan3754">i </tspan><tspan
+         sodipodi:role="line"
+         x="107.43014"
+         y="132.09383"
+         style="font-size:0.00352781px;line-height:1.25;fill:#ffffff;stroke-width:0.26458332;"
+         id="tspan3756">c </tspan><tspan
+         sodipodi:role="line"
+         x="107.43014"
+         y="132.09824"
+         style="font-size:0.00352781px;line-height:1.25;fill:#ffffff;stroke-width:0.26458332;"
+         id="tspan3758">o </tspan><tspan
+         sodipodi:role="line"
+         x="107.43014"
+         y="132.10265"
+         style="font-size:0.00352781px;line-height:1.25;fill:#ffffff;stroke-width:0.26458332;"
+         id="tspan3760">C </tspan><tspan
+         sodipodi:role="line"
+         x="107.43014"
+         y="132.10706"
+         style="font-size:0.00352781px;line-height:1.25;fill:#ffffff;stroke-width:0.26458332;"
+         id="tspan3762">T </tspan><tspan
+         sodipodi:role="line"
+         x="107.43014"
+         y="132.11147"
+         style="font-size:0.00352781px;line-height:1.25;fill:#ffffff;stroke-width:0.26458332;"
+         id="tspan3764">F { 3 n h 4 n </tspan><tspan
+         sodipodi:role="line"
+         x="107.43014"
+         y="132.11588"
+         style="font-size:0.00352781px;line-height:1.25;fill:#ffffff;stroke-width:0.26458332;"
+         id="tspan3752">c 3 d _ d 0 a 7 5 7 b f }</tspan></text>
+  </g>
+</svg>
+
+
+here we can see that the flag has been segmented and printed over several lines of code 
+
