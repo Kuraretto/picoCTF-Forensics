@@ -1,0 +1,23 @@
+Wireshark doo dooo do doo.
+
+Description
+Can you find the flag?
+
+relatively easy cahllenge 
+
+we are given a capture file and asked to find the flag from it 
+
+we open the flag using wireshark and start analyzing it using different filters like tcp and http
+
+then we start looking into each steam 
+
+tcp.stream eq 0 , tcp.stream eq 1 etc 
+and at tcp.stream eq 5 when i followed the tcp steam i was able to find something which was similar to the flag 
+
+"cvpbPGS{c33xno00_1_f33_h_qrnqorrs}"
+
+then i went on to 
+
+https://www.dcode.fr/cipher-identifier
+
+and pasted the text there is said that it was ROT13 cipher so we decode it using rot13 and boom the flag is decrypted 
