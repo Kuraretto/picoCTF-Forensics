@@ -1,0 +1,10 @@
+use the command 
+
+"strings anthem.flag.txt | grep "picoCTF" 
+
+this will print out 
+
+ we think that the men of picoCTF{gr3p_15_@w3s0m3_58f5c024}
+ 
+ there we go the flag is in the output 
+ 
