@@ -1,0 +1,33 @@
+pretty simple challenge 
+
+we are given a file, and told to find the flag 
+
+at first i wanted to know what type of file it is so i ran files cmd and just printed data 
+
+and using exiftool it said unknown file type 
+
+so i used ghex and found that the header was corrupted and it it started with 89 and 50 this gave me the clue that it was a PNG file format 
+
+so i opened the file in hexeditor 
+
+using hexeditor -n 
+
+and then i replaced the corrupted bits with the proper PNG header which i got from the wiki 
+
+then saved the new fixed file as .png file and opened it 
+
+it was a black red image at first glance 
+
+then i used an online tool https://29a.ch/photo-forensics/#forensic-magnifier
+
+and saw that the flag was hidden inside 
+
+there is another way to find the flag 
+
+using python cv we can solve this and add an mask to find the flag 
+
+the reference writeup is 
+
+https://gist.github.com/sanjitkumar2016/23a23c0673a7bfb0f92869ef3d6c44ae
+
+ 
