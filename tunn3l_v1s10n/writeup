@@ -1,0 +1,13 @@
+simple challenge but the concept was kinda new to me 
+
+first i check the file we are given using the files cmd but nothign really pops up so 
+i used exiftool to see if ican extract anything more useful and then i saw that the file was a bmp file 
+
+and then i used hexe4ditor to see the hex values of the file. i saw that there was a problem with the header but as i was not familar on these type of challenges i refered to an writeup online 
+
+reference writeup 
+
+https://gddaredevil.medium.com/tunn3l-v1s10n-picoctf-2021-22af85aab8dc
+
+this writeup explained to me perfectly how it works and what to change 
+
