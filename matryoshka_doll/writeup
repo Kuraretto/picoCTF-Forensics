@@ -1,0 +1,3 @@
+easy challenge 
+
+just keep extracting the contents of the image using binwalk till you find the flag.txt file which has the flag for the challenge 
