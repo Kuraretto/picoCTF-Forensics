@@ -1,0 +1,19 @@
+very simple challenege 
+
+first i checked the file type using files and then 
+opened it, it was some kind of power point presentation 
+
+and i wanted to see if there are any thing to be extracted so i used binwalk to extract the contents of the ppt 
+
+and this gave me a folder "_Forensics is fun.pptm.extracted"
+
+now i wanted to first  check if the flag is in any of the files in the directory so i used grep 
+
+but no luck so i manually went through each folder and then i stumbled upon a file names hidden
+
+i opend it and it had a encrypted text 
+
+i copied the text and pasted it in dcode.fr and it said its possibly base62, substitution, shift or base 64 
+i tried everything and it was base64 
+
+decrypting the text using base64 gave me the flag 
