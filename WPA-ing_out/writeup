@@ -1,0 +1,11 @@
+very simple challnege 
+
+as the hints suggested that using aircrack i got the idea to just use the wordlist directly with aircrack ng 
+
+ "aircrack-ng -w /usr/share/wordlists/rockyou.txt wpa-ing_out.pcap"
+
+this command should crack the pcap file using the rockyou.txt password wordlist file 
+
+the key was found and it was mickeymouse
+
+now put that in the picoCTF flag format and submit 
