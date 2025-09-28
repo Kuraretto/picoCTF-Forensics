@@ -1,0 +1,18 @@
+pretty easy challenge 
+
+we are simply provided with a link which opens a website which displays a gif which changes with our mouse movement 
+
+then i copy the link and use wget to downlod the image 
+
+then i look at the image and its .png so i try to use zsteg on it but get an error saying its too big and can't do anything 
+
+so i googled and found a way to compress the image 
+
+using this command below i was able to compress the image 
+
+pngcrush -rem alla -reduce -brute concat_v.png fixed.png
+
+and then once it was compressed i ran zsteg on the fixed.png 
+
+and boom got the flag 
+
