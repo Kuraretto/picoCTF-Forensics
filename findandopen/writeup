@@ -1,0 +1,17 @@
+easy challenege 
+
+we are given with 2 files one is a pcap file and the other is a zip file 
+
+first i open the pcap file and read the contents of it which going through the file i came accross 
+a packet which seemed to be encrypted using base64 
+
+so i right clicked it and copied it as utf-8 text and opened up my fav website dcode.fr 
+and decrpted it 
+
+it gave me only half the flag, while looking at the other packets in the pcap file i came accross another message 
+which asked me to look into the other file ie the zip file 
+
+when i tried to extract the file, it was password protected 
+as a trial i just put the half flag which i got as the password for the zip file and boom it extracted a text file 
+
+this text file named flag had the whole flag 
