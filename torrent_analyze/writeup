@@ -1,0 +1,23 @@
+was not able to understand the challenege so i refered to a writeup online 
+
+reference writeup
+
+https://ctftime.org/writeup/33212
+
+i learnt a lot from this writeup and was able to implement it on my own later 
+
+first we find the term info_hash using ctrl+F in the search change the options to string so that it can filter out all the packets having the term info_hash
+
+now even after filtering there are more packets 
+
+as we are looking for a file that was downloaded lets include all the packets where the source address is from our local network and info_hash string exists
+
+for this the query is 
+
+"bt-dht.bencoded.string contains info_hash and ip.src == 192.168.73.132"
+
+after filtering it, all the packets have the info_hash 
+
+now we can google this hash to get the name of the file which we need as the flag 
+
+
