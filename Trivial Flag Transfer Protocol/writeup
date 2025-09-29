@@ -1,0 +1,36 @@
+pretty simple challenge but i struggled with finding the proper packets to look for in wireshark when i started 
+
+so with a little help online i managed to find how to filter out the required packets 
+
+since we are looking for TFTP packets i filtered the packets for tftp but then there were still more packets so i added another filter 
+
+tftp.type this gave me only the required files 
+
+then i exported all the contents in the packet by selecting them 
+
+file -> export -> tftp 
+
+once extracted we are provided with a few files 
+
+namely instructions.txt, plan.txt both of these files contained encryted data 
+
+
+i copied the data from instructions and decrypted it using dcode.fr and it was a ROT13 encryption 
+
+this was the output 
+
+TFTPDOESNTENCRYPTOURTRAFFICSOWEMUSTDISGUISEOURFLAGTRANSFER.FIGUREOUTAWAYTOHIDETHEFLAGANDIWILLCHECKBACKFORTHEPLAN
+
+so i open the plan.txt and again it was encrypted using the same algo 
+
+so i used dcode to solve it and this was the output 
+
+IUSEDTHEPROGRAMANDHIDITWITH-DUEDILIGENCE.CHECKOUTTHEPHOTOS
+
+so now it stuck me to use the basic image forensic tool like steghide the deb file which is got is the software steghide as well 
+
+so i use steghide to get the flag from the bmp image 
+
+when i trired to get the flag using steghide it asks for password, if you have noticed the clue from plans.txt was sus, it said "WITH-DUEDILIGENCE" so i tried using DUEDILIGENCE as the password 
+
+and when i tried it on image1 and 2 it did not work, but it worked on image 3 and we got the flag 
