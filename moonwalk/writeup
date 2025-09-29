@@ -1,0 +1,14 @@
+this was something completely new for me so i looked up to a writeup on how to solve this ]
+
+and found that i had to use 2 new tools which i have never heard about before 
+
+the reference writeup 
+
+https://medium.com/@sobatistacyber/picoctf-writeup-m00nwalk-15a64699ac21
+
+the tools were 
+
+    QSSTV (to decode the SSTV signal)
+    pavucontrol (to manage the virtual audio connection)
+    
+    
