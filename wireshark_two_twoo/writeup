@@ -1,0 +1,32 @@
+confusing challenge could not solve on my own so i refered to an writeup online and 
+
+reference article 
+
+https://medium.com/@khamismohamed024/picoctf-wireshark-twoo-twooo-two-twoo-digital-forensics-0cffd8b6ab22
+
+step 1 
+
+we open the file and see if the flag is printed in the packets 
+
+i did this by using the strings and grep this printed out many different flags and i knew that none of them are the real flag so moving on to step 2 
+
+step 2
+
+we find that there are a lot of traffic in the DNS requests 
+
+espeically in <intruder>redshrimpandherring.com 
+
+in this i wanted to filter out only the DNS request 
+
+and then i tried the ip filter for the ip 18.217.1.75
+
+the filter i used was 
+"dns && ip.dst == 18.217.1.75"
+
+now we get a limited number of packets and if you take the intruder letter of all the redshrimpandherring.com
+
+and append them in order we get 
+cGljb0NURntkbnNfM3hmMWxfZnR3X2RlYWRiZWVmfQ==
+
+then i visit my fav website dcode.fr and decrypt the flag which is encoded using base64
+
