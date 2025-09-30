@@ -1,0 +1,25 @@
+this was a complete new challenge for me and i was not able to figure out what is going on 
+
+so i refered to an writeup online 
+
+https://medium.com/@sobatistacyber/picoctf-writeup-whitepages-4d13300b3566
+
+after tgoign through this i was able to under stand and learn 2 main concepts 
+
+->how to understand hex codes and how to indentify them 
+->pattern recogonization 
+->writing scripts to convert hex to binary then from binary to readable ascii 
+
+the writeup also included some real world applications 
+
+Real-World Applications
+
+This challenge is a great introduction to steganography, the practice of hiding data in seemingly normal files. In cybersecurity, similar techniques are used in malware obfuscation, watermarking, and covert communications. Understanding how data can be hidden in plain sight is crucial for digital forensics and security analysis.
+
+This kind of analysis is commonly used in:
+
+    Malware analysis: Detecting hidden payloads in seemingly harmless files.
+    Data leakage detection: Uncovering hidden messages in documents.
+    Cyber forensics: Recovering deleted or hidden evidence from suspect files.
+    
+    
