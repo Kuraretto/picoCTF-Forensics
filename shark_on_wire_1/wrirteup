@@ -1,0 +1,7 @@
+simple challenge
+
+to be cheeky i first just used strings and grep to see if i can find the flag but no luck so i used wireshark 
+to analyze the given pcap file 
+
+i opened it and saw that there were a lot of different protocols used and by using the hint in the challenge which said to look at the streams i first started with tcp, but nothing then i went to UDP and followed the steam and sure enough found the flag at the 6th steam 
+
