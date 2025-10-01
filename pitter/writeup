@@ -1,0 +1,10 @@
+very simple challenge
+
+use autospy to open the file and in the settings uncheck both the options under the 
+
+"hide slack in the:" 
+
+and see the image file again this should show us the file which has the flag 
+
+but it looks like the flag is written in reveres so i use dcode.fr to decrypt the flag 
+
