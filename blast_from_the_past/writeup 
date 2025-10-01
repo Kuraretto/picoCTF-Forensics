@@ -1,0 +1,26 @@
+was a simple challenge and i was able to get the grasp of what should be done, but since i did not know how to change the values or the data in the image i had t ogoogle it up and saw that most  of them could be changed using exiftool itself
+
+then i started changing all the date time values to the one mentioned in the challeneg 
+
+exiftool -AllDates='1970:01:01 00:00:00.001' -CreateDate='1970:01:01 00:00:00.001' -DateTimeOriginal='1970:01:01 00:00:00.001' -ModifyDate='1970:01:01 00:00:00.001' -SubSecCreateDate='1970:01:01 00:00:00.001' -SubSecDateTimeOriginal='1970:01:01 00:00:00.001' -SubSecModifyDate='1970:01:01 00:00:00.001' -TimeStamp='1970:01:01 00:00:00.001' original.jpg
+
+by using this commnad 
+
+but we get an error when we try to update the timeStamp i looked into it and found that it accepts only integer 
+
+so i opend up hex editor to see how to change it, but i could not locate it properly 
+
+so i tried using strings 
+
+then i found something weird 
+
+there was something named "Image_UTC_Data" which looked like a time stamp so i went back to hex editor and located it and changed the value to 
+
+0001
+
+and then i uploaded the file to the server with the command provided in the challenege 
+
+then checked it with the command provided in the challenege 
+
+and once the check was done it printed the flag 
+
