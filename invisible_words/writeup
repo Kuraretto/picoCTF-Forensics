@@ -1,0 +1,57 @@
+we are given with an image file from the challenge 
+
+
+first i used file command to check the file type then i used exiftool to ch3eck if there are any other useful information , but nothing stood out 
+
+then i used hexeditor to check the hex thats when i came across something familar, i noticed the header was PK
+
+PK encoded into hex is 50 4b, which are the 2 bytes we see first 
+
+looking up i saw that the PKZip archive should start with 50 4b 03 04 
+
+then the hex bytes after 50 4b should be 03 and 04 but in this case it is not 
+
+then i was thinking about first putting every individual byte onto its own line and save it as a file first then remove every other pair of bytes. ie 
+
+as the header was seperate by a pair of bytes i want to try and removing every alternate pair of bytes 
+
+so i made a python script to do it 
+
+
+bytes = []
+
+fileObj = open("hex", "r")
+
+bytes = fileObj.read().split()
+
+fileObj.close()
+ 
+p1 = bytes[0::4] 
+p2 = bytes[1::4] 
+
+zipstring = " "
+
+for f,b in zip(p1,p2):
+ zipstring += f
+ zipstring += b
+ 
+print(zipstring)
+
+save this file, i named it as script.py
+
+then ran the script on the image using this command 
+
+python3 script.py | xxd -r -p > hex_trunc
+
+hex_trunc is the output file name 
+
+now we extract the content from the hex_trunc file using binwalk 
+
+binwalk -e hex_trunc
+
+this gives us a new folder which has a zip file 
+
+we open this and it gives us a huge text file which seems like a book 
+
+i simply used the search feature to search for the picoCTF flag format and got the flag 
+
