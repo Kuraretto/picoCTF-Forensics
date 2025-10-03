@@ -1,0 +1,65 @@
+these type of challenges are new to me so i found them hard, so first thing i did was search up for side channel attacks and tried to understand what they are and how they work 
+
+then i looked for writeups for this solution and here is what i  found out 
+
+first lets take a look at the hints provided in the challenge 
+
+->Read about "timing-based side-channel attacks."
+->Attempting to reverse-engineer or exploit the binary won't help you, you can figure out the PIN just by interacting with it and measuring certain properties about it.
+->Don't run your attacks against the master server, it is secured against them. The PIN code you get from the pin_checker binary is the same as the one for the master server.
+
+i was not able to find anything useful from these hints as well, so i started with side channel attacks 
+
+as the hint mentioned there won't be any reverese engineering needed to solve this, i first used the chomd +x command to give the file permission and tried running it 
+
+oonce i ran it 
+
+./pin_checker
+Please enter your 8-digit PIN code:
+
+
+it asked me to enter a pin 
+
+ABOUT TIME BASED SIDE CHANNEL ATTACKS 
+
+Time Based Side Channel Attack:
+
+Time-based side-channel attacks are a class of attacks where an attacker gains information about a system’s internal operations or secret data (like cryptographic keys, passwords, or memory contents) by measuring how long certain operations take to execute.
+
+They do not require access to the secret itself, but instead rely on timing variations during computation or response.
+
+The attacker infers sensitive information by analyzing execution time differences in a system’s behavior.
+
+Examples of Time based side channel attacks:
+1) Cryptographic timing
+2) Password Comparison attack
+3) Branch Prediction and cache timing
+4) Network timing attack
+
+
+As we are looking for pin or password, password comparison attack will be helpful.
+
+Password Comparison Attack:
+
+Many password validation functions compare strings character by character and return as soon as a mismatch is found.This creates a timing side-channel:
+
+    If your guess is partially correct, the comparison takes slightly longer.
+    By measuring these differences, you can brute force the password one character at a time.
+    
+    
+reference writeup 
+
+https://medium.com/@tigerpj12/sidechannel-picoctf-0cc0960883d3
+
+
+i used the same script the writeup used ( as i said i am new to this and am still learning) 
+
+i first read the code and tried to understand what it was doing 
+
+then i ran the code and got the 8 digit pin 
+
+then i launched an instance from the challenege page 
+
+and connected to it and entered the 8 digit code from the output 
+
+this gave me the flag 
