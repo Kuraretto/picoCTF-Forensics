@@ -1,0 +1,54 @@
+was a pretty easy challenge, but i got stuck in one part and had to refer to a writeup to learn how to solve it 
+
+so from the given challenge we can infer that we have to connect to a server using ssh and the command was given in the challeneg 
+
+ssh -i key_file -p 59823 ctf-player@saturn.picoctf.net
+
+here you can notice that there is a key_file 
+
+so from this i understood that we need to get a ssh key file, and as we are provided with a disk image 
+
+I downloaded it and started to go through each directory 
+
+in kali it automatically created the partitions so i was simply able to navigate 
+
+i then used the terminal coz i wanted to see if there are any hidden files using ls -all as those files won't be shown in normal gui 
+
+and as i kept browsing i checked the root directory and it showed that it had 
+
+ls -al 
+total 4
+drwx------  3 root root 1024 Oct  6  2021 .
+drwxr-xr-x 21 root root 1024 Oct  6  2021 ..
+-rw-------  1 root root   36 Oct  6  2021 .ash_history
+drwx------  2 root root 1024 Oct  6  2021 .ssh
+
+
+then i cd into the .ssh folder 
+
+and saw that it had 2 files 
+
+id_ed25519  id_ed25519.pub
+
+after ussing cat of both the files, i saw that the id_ed25519 had the secret key 
+
+then using the cp cmd i copied the ssh keyuu to my challenge folder 
+
+then using the command from the challenge i ran it by using the ssh key file name 
+
+but it gave me a permission error 
+
+i was stuck here for sometime thats when i refered to a writeup and saw that using the noraml chmod +x does not work, instead it was chmod 600
+
+the difference is 
+
+chmod +x file — adds execute permission (makes a file runnable). Equivalent to chmod a+x.
+
+chmod 600 file — sets the file to owner read/write only (rw-------) — no execute, no group/other
+then when i ran the command (given below) again it conencted me to the server 
+
+ssh -i id_ed25519 -p 65471 ctf-player@saturn.picoctf.net
+
+and i was inside the machine, the first thing i did was check the files in my directory using the ls command and immediately saw a flag.txt file, using the cat command i view the flag 
+
+
