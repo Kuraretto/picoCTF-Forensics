@@ -1,3 +1,4 @@
+...
 Encrypted device bitlocker-1.dd opened, size 100MB
 Salt: 2b71884a0ef66f0b9de049a82a39d15b
 RP Nonce: 00be8a46ead6da0106000000
